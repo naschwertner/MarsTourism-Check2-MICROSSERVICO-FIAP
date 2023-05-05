@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Editar Viagens</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #4D5673;
+         padding-top: 40px;
+    }
+    
+    .container {
+        padding-top: 10px;
+        background-color: #3B4259;
+        padding: 30px;
+        border-radius: 50px;
+    }
+    
+    h1 {
+        color: #fff;
+        margin-bottom: 30px;
+    }
+    
+    label {
+        display: block;
+        margin-top: 15px;
+        color: #fff;
+    }
+    
+    input[type="text"], input[type="number"], input[type="date"] {
+        width: 100%;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    
+    input[type="submit"] {
+        display: block;
+        margin-top: 15px;
+        background-color: #7B943B;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    
+    input[type="submit"]:hover {
+        background-color: #9FBF4D;
+    }
+</style>
+</head>
+<body>
+<div class="container" align="center">
+    <h1>Editar Viagem</h1>
+    <div class="col-sm-6">
+    <form th:action="@{/salvar}" th:object="${viagem}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <label for="dataDecolagem">Data de Decolagem:</label>
+        <input type="date" id="dataDecolagem" th:field="*{dataDecolagem}" required>
+        <br>
+        <label for="duracaoEstadia">Duração da Estadia:</label>
+        <input type="number" id="duracaoEstadia" th:field="*{duracaoEstadia}" required>
+        <br>
+        <label for="assentosDisponiveis">Assentos Disponíveis:</label>
+        <input type="number" id="assentosDisponiveis" th:field="*{assentosDisponiveis}" required>
+        <br>
+        <label for="modeloNave">Modelo da Nave:</label>
+        <input type="text" id="modeloNave" th:field="*{modeloNave}" required>
+        <br>
+        <label for="nomePrimeiroComandante">Primeiro Comandante:</label>
+        <input type="text" id="nomePrimeiroComandante" th:field="*{nomePrimeiroComandante}" required>
+        <br>
+        <label for="matriculaPrimeiroComandante">Matrícula do Primeiro Comandante:</label>
+        <input type="text" id="matriculaPrimeiroComandante" th:field="*{matriculaPrimeiroComandante}" required>
+        <br>
+        <label for="nomeSegundoComandante">Segundo Comandante:</label>
+        <input type="text" id="nomeSegundoComandante" th:field="*{nomeSegundoComandante}" required>
+        <br>
+        <label for="matriculaSegundoComandante">Matrícula do Segundo Comandante:</label>
+        <input type="text" id="matriculaSegundoComandante" th:field="*{matriculaSegundoComandante}" required>
+        <br>
+        <input type="submit" value="Salvar">
+    </form>
+</body>
+</html>

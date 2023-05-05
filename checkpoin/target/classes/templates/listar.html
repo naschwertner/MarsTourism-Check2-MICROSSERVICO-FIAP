@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Listar Viagens</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #3B4259;
+        padding-top: 40px;
+    }
+    
+    .container {
+        padding-top: 10px;
+        background-color: #3B4259;
+        padding: 30px;
+        border-radius: 50px;
+    }
+    
+    h1, label, th, td, a {
+        color: #fff; /* Tornar todas as letras brancas */
+    }
+    
+    h1 {
+        margin-bottom: 30px;
+    }
+    
+    label {
+        display: block;
+        margin-top: 15px;
+    }
+    
+    input[type="text"], input[type="number"], input[type="date"] {
+        width: 100%;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    
+    input[type="submit"] {
+        display: block;
+        margin-top: 15px;
+        background-color: #7B943B;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    
+    input[type="submit"]:hover {
+        background-color: #9FBF4D;
+    }
+    
+      table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    th, td {
+        border: 1px solid #fff;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #6a1b9a;
+    }
+</style>
+</head>
+
+<body>
+<div align="center">
+    <h1>Lista de Viagens</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Data de Decolagem</th>
+            <th>Duração da Estadia</th>
+            <th>Assentos Disponíveis</th>
+            <th>Modelo da Nave</th>
+            <th>Primeiro Comandante</th>
+            <th>Matrícula do Primeiro Comandante</th>
+            <th>Segundo Comandante</th>
+            <th>Matrícula do Segundo Comandante</th>
+            <th>Ações</th>
+        </tr>
+        <tr th:each="viagem : ${viagens}">
+            <td th:text="${viagem.id}"></td>
+            <td th:text="${#temporals.format(viagem.dataDecolagem, 'dd/MM/yyyy')}"></td>
+            <td th:text="${viagem.duracaoEstadia}"></td>
+            <td th:text="${viagem.assentosDisponiveis}"></td>
+            <td th:text="${viagem.modeloNave}"></td>
+            <td th:text="${viagem.nomePrimeiroComandante}"></td>
+            <td th:text="${viagem.matriculaPrimeiroComandante}"></td>
+            <td th:text="${viagem.nomeSegundoComandante}"></td>
+            <td th:text="${viagem.matriculaSegundoComandante}"></td>
+            <td>
+                <a th:href="@{/editar/{id}(id=${viagem.id})}">Editar</a>
+                <a th:href="@{/excluir/{id}(id=${viagem.id})}">Excluir</a>
+            </td>
+        </tr>
+    </table>
+    <a th:href="@{/novo}">Nova Viagem</a>
+</body>
+</html>
